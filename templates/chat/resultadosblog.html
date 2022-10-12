@@ -1,0 +1,45 @@
+{% extends "chat/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">RESULTADOS DE LA BUSQUEDA</h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<h1>BUSQUEDA DE blogs</h1>
+{% if blog %}
+
+<div style="text-align: center; font-family: 'Lato', sans-serif; background-color: rgb(172, 162, 162);">
+<ul>
+    {% for bl in blog %}
+    <h2> Titulo : " {{bl.titulo}} "  </h2>
+    <h3> Autor: {{bl.autor}}</h3>
+    __________________________________
+
+    <h5 style= "background-color: rgb(201, 197, 197);" >{{bl.cuerpo}}</h5>
+    <h4>Fecha: {{bl.fecha}}</h4>
+    <hr>
+    <br>
+    -----------------------------------
+    <h5> Coderhouse 2022</h5>
+    -----------------------------------
+        <br>
+        
+            <hr style= "color: rgb(0, 0, 0);">
+
+            <img src= "/media/blanco.jpg" alt="imagen temporal" height="300"> 
+        <br>
+
+    {% endfor %}
+
+
+</ul>
+</div>
+
+{% else %}
+<p>NO SE ENCONTRARON blogs</p>
+
+{% endif %}
+
+{% endblock %}
