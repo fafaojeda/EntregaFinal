@@ -25,7 +25,7 @@ para crear tu primer Blog solo es necesario el Crearte un Perfil desde el boton 
 <h1>Autores del proyecto:</h1>
 
 <h2> Exequiel Fontecilla              </h2> 
-<h2> Facu Uncal                       </h2> 
+<h2> Facundo Uncal Amerio             </h2> 
 <h2> Fabricio Ojeda                   </h2>
 
 <h3> ¿Aun tienes alguna duda?</h3>
