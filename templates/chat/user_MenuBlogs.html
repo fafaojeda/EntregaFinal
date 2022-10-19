@@ -1,0 +1,25 @@
+{% extends "chat/padre.html" %}
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">Menu de Blogs de {{ user.username }} </h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<div>
+    <a class="btn btn-info" style="color: lightblue;" href="{% url 'form_blog' %}">Crear Blog</a>
+    <a class="btn btn-info" style="color: lightblue;" href="{% url 'user_MisBlogs' %}">Mis Blogs</a>
+    <a class="btn btn-info" style="color: lightblue;" href="{% url 'resultadosblog' %}">Todos los Blogs</a>
+</div>
+<div>
+    <img src="{{ avatar }}" height="200" alt="">
+</div>
+<div>
+    <ul>
+        <h3>Username:    {{ user.username }}</h3>
+        <h3>Nombre:      {{ user.first_name }}</h3>
+        <h3>Apellido:    {{ user.last_name }}</h3>
+        <h3>Email:       {{ user.email }}</h3>
+    </ul>
+</div>
+{% endblock%}

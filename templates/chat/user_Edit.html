@@ -1,0 +1,22 @@
+{% extends "chat/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">Editar Perfil de {{ user }}</h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<h2>Formulario Datos de Usuario</h2>
+<h3>{{ mensaje }}</h3>
+<form action="{% url 'user_Edit' %}" method="POST"> {% csrf_token %}
+
+    <table>
+        {{ formulario.as_table }}
+    </table>
+    <input type="submit" value="guardar">
+
+</form>
+
+
+{% endblock %}

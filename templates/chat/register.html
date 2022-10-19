@@ -13,6 +13,12 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
+                    {{ form.email }}
+                    <label for="id_email" data-error="Email already taken">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
                     {{ form.password1 }}
                     <label for="id_password">Password</label>
                 </div>
@@ -25,9 +31,10 @@
             </div>
             <div class="row">
                 <div class="col s12">
-                <div class="right">
-                    <button class="btn blue waves-effect waves-light pull-s12">Register</button>
                     <a href="{% url 'inicio' %}">Invitado </a> 
+                <div class="right">
+                    <a href="{% url 'index' %}">Login </a> 
+                    <button class="btn blue waves-effect waves-light pull-s12">Register</button>
                 </div>
                 </div>
             </div>

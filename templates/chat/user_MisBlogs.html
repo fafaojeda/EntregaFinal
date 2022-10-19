@@ -2,21 +2,22 @@
 {% load static %}
 
 {% block titulo %}
-<h1 class="mb-5">Catalogo de Blogs</h1>
+<h1 class="mb-5">Catalogo de Blogs de {{ user.username }}</h1>
 {% endblock %}
 
 {% block contenido_que_cambia %}
 <h1>Blogs </h1>
 {% if Blog %}
 
+
 <table>
     <tr>
-        <th><h2>Imagen</h2></th>
+        <th> <h2>Imagen</h2> </th>
         <th><h2>Titulo</h2></th> 
         <th><h2>Subtitulo</h2></th> 
         <th><h2>Autor</h2></th> 
         <th><h2>Fecha</h2></th> 
-
+        <th><h2>Opciones</h2></th> 
     </tr>
 
     {% for bl in Blog %}
@@ -27,6 +28,8 @@
         <td><h3>{{ bl.autor }}</h3></td>
         <td><h4>{{ bl.fecha }}</h4></td>
 
+            <td><a class="btn btn-info" href="          ">Modificar</a></td>
+            <td><a class="btn btn-danger" href=" {% url 'blog_eliminar' bl.id %} ">Eliminar</a></td>
     </tr>
     {% endfor %}
 

@@ -3,16 +3,18 @@
 {% load static %}
 
 {% block titulo %}
-<h1 class="mb-5" >Paso1: Escribe tu Blog </h1>
+<h1 class="mb-5" >Escribe tu Blog </h1>
 {% endblock %}
 
 {% block contenido_que_cambia %}
 <h1>¿Escribi tu blog aqui!</h1>
+{{ mensaje }}
 <form action="{% url 'form_blog' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
     <table>
         {{ formulario.as_table }}
     </table>
-    <input type="submit" value="enviar">
+    <input class="btn btn-info" type="submit" value="Crear">
+    
 </form>
 {% endblock%}
 

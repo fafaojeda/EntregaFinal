@@ -39,9 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
-    'crispy_forms',
     'rest_framework',
-    'chat',
+    'chat'
 ]
 
 MIDDLEWARE = [
@@ -85,7 +84,6 @@ DATABASES = {
     }
 }
 
-APPEND_SLASH = False
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -119,14 +117,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+#Logout User
+
+LOGOUT_REDIRECT_URL = ""
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'AppCoder/static'),)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-#aca esta nuestra carpeta de imagenes
+# aca esta nuestra carpeta de imagenes
+
 MEDIA_URL = '/media/'
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_ROOT = BASE_DIR = 'media'
