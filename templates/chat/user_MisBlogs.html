@@ -28,8 +28,8 @@
         <td><h3>{{ bl.autor }}</h3></td>
         <td><h4>{{ bl.fecha }}</h4></td>
 
-            <td><a class="btn btn-info" href="          ">Modificar</a></td>
-            <td><a class="btn btn-danger" href=" {% url 'blog_eliminar' bl.id %} ">Eliminar</a></td>
+            <td><a class="btn btn-info" href=" {% url 'blog_edit' bl.id %} ">Modificar</a></td>
+            <td><a class="btn btn-danger" href=" {% url 'blog_del' bl.id %} ">Eliminar</a></td>
     </tr>
     {% endfor %}
 

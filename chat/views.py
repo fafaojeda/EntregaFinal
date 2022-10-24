@@ -38,7 +38,7 @@ def resultadosblog(request):
 
 #Apartado de Blogs
 @login_required
-def blog_eliminar(request,id):
+def blog_del(request,id):
     blog=Blog.objects.get(id,id)
     blog.delete()
     return redirect(to='user_MisBlogs.html')
@@ -172,6 +172,35 @@ def form_blog(request):
     else:
         formulario=BlogForm()
         return render (request, "chat/form_blog.html", {"formulario":formulario ,'avatar':obteneravatar(request)})
+
+@login_required
+def blog_edit(request,id):
+    blog=Blog.objects.get(id=id)
+    if request.method=='POST':
+        form=BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            info             =form.cleaned_data
+            blog.titulo      =info["titulo"]
+            blog.subtitulo   =info["subtitulo"]
+            blog.cuerpo      =info["cuerpo"]
+            blog.autor       =info['autor']
+            blog.fecha       =info["fecha"]
+            blog.imagen      =info["imagen"]
+            blog.save()
+            Blogs=Blog.objects.all()
+            return render(request, 'chat/blog_edit.html',{'blog':blog,"imagen": blog.imagen.url,'Blogs':Blogs,'mensaje':"Blog Editado Exitosamente"})
+        else:
+            Blogs=Blog.objects.all()
+            return render(request, 'chat/blog_edit.html',{'blog':blog,"imagen": blog.imagen.url,'Blogs':Blogs,'mensaje':"Faltan Campos por rellenar o Formulario Invalido"})
+    else:
+        form=BlogForm(initial={'titulo':blog.titulo,'subtitulo':blog.subtitulo,'cuerpo':blog.cuerpo,'autor':blog.autor,'fecha':blog.fecha,'imagen':blog.imagen.url})
+        return render(request, 'chat/blog_edit.html',{'formulario':form, 'blog':blog})
+
+
+
+
+
+
 
 @login_required
 def user_MisBlogs(request):

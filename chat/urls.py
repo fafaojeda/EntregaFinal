@@ -13,8 +13,8 @@ urlpatterns = [
 
 #Apartado de Blogs
 
-    path('blog_eliminar/<id>/',     blog_eliminar,      name='blog_eliminar'),
-
+    path('blog_del/<id>/',             blog_del,         name='blog_del'),
+    path('blog_edit/<id>/',            blog_edit,        name='blog_edit'),
 
 #Apartado del Usuario
     path('user/',                   user,               name='user'),

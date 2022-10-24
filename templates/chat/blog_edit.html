@@ -1,0 +1,22 @@
+{% extends "chat/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5" >  </h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<h1>Modifica tu blog aqui!</h1>
+{{ mensaje }}
+
+<form action="{% url 'blog_edit' blog.id %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+    <table>
+        {{ formulario.as_table }}
+    </table>
+    <input class="btn btn-info" type="submit" value="Crear">
+
+</form>
+{% endblock%}
+
