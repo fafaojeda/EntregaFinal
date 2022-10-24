@@ -2,12 +2,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from chat.models import *
 from chat.forms import *
 from chat.serializers import MessageSerializer
+
 
 #Views posibles para Invitado
 def padre_view(request):
@@ -36,12 +37,68 @@ def resultadosblog(request):
     else:
         return render(request, "chat/resultadosblog.html",{'Blog':Blogs})
 
+
 #Apartado de Blogs
+
+@login_required
+def user_MenuBlogs(request):
+    return render(request, "chat/user_MenuBlogs.html",{'avatar':obteneravatar(request)}) 
+
+@login_required
+def form_blog(request):
+    if request.method=="POST":
+        formulario=BlogForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            info        =formulario.cleaned_data
+            objeto=Blog(
+            usuario     =request.user,  
+            titulo      =info["titulo"],
+            subtitulo   =info["subtitulo"],
+            cuerpo      =info["cuerpo"],
+            autor       =info['autor'],
+            fecha       =info["fecha"],
+            imagen      =info["imagen"],
+            )
+            objeto.save()
+            return render(request, "chat/form_blog.html", {'usuario':request.user, 'mensaje':'Formulario Creado Exitosamente', "imagen": objeto.imagen.url,'avatar':obteneravatar(request)})
+        else:
+            return render(request, "chat/form_blog.html", {"mensaje":"Error",'avatar':obteneravatar(request)})
+    else:
+        formulario=BlogForm()
+        return render (request, "chat/form_blog.html", {"formulario":formulario ,'avatar':obteneravatar(request)})
+
 @login_required
 def blog_del(request,id):
-    blog=Blog.objects.get(id,id)
+    blog=Blog.objects.get(id=id)
     blog.delete()
-    return redirect(to='user_MisBlogs.html')
+    Blogs=Blog.objects.filter(usuario=request.user)
+    return render(request, 'chat/user_MisBlogs.html',{'Blog':Blogs ,'avatar':obteneravatar(request)})
+
+
+
+@login_required
+def blog_edit(request,id):
+    blog=Blog.objects.get(id=id)
+    if request.method=='POST':
+        form=BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            info             =form.cleaned_data
+            blog.titulo      =info["titulo"]
+            blog.subtitulo   =info["subtitulo"]
+            blog.cuerpo      =info["cuerpo"]
+            blog.autor       =info['autor']
+            blog.fecha       =info["fecha"]
+            blog.imagen      =info["imagen"]
+            blog.save()
+            Blogs=Blog.objects.all()
+            return render(request, 'chat/blog_edit.html',{'blog':blog,"imagen": blog.imagen.url,'Blogs':Blogs,'mensaje':"Blog Editado Exitosamente"})
+        else:
+            Blogs=Blog.objects.all()
+            return render(request, 'chat/blog_edit.html',{'blog':blog,"imagen": blog.imagen.url,'Blogs':Blogs,'mensaje':"Faltan Campos por rellenar o Formulario Invalido"})
+    else:
+        form=BlogForm(initial={'titulo':blog.titulo,'subtitulo':blog.subtitulo,'cuerpo':blog.cuerpo,'autor':blog.autor,'fecha':blog.fecha,'imagen':blog.imagen.url})
+        return render(request, 'chat/blog_edit.html',{'formulario':form, 'blog':blog})
+
 
 #Registro
 def register_view(request):
@@ -145,56 +202,6 @@ def user_EditPass(request):
 @login_required
 def user(request):
     return render(request, "chat/user.html",{'avatar':obteneravatar(request)}) 
-
-@login_required
-def user_MenuBlogs(request):
-    return render(request, "chat/user_MenuBlogs.html",{'avatar':obteneravatar(request)}) 
-
-@login_required
-def form_blog(request):
-    if request.method=="POST":
-        formulario=BlogForm(request.POST, request.FILES)
-        if formulario.is_valid():
-            info        =formulario.cleaned_data
-            objeto=Blog(
-            usuario     =request.user,  
-            titulo      =info["titulo"],
-            subtitulo   =info["subtitulo"],
-            cuerpo      =info["cuerpo"],
-            autor       =info['autor'],
-            fecha       =info["fecha"],
-            imagen      =info["imagen"],
-            )
-            objeto.save()
-            return render(request, "chat/form_blog.html", {'usuario':request.user, 'mensaje':'Formulario Creado Exitosamente', "imagen": objeto.imagen.url,'avatar':obteneravatar(request)})
-        else:
-            return render(request, "chat/form_blog.html", {"mensaje":"Error",'avatar':obteneravatar(request)})
-    else:
-        formulario=BlogForm()
-        return render (request, "chat/form_blog.html", {"formulario":formulario ,'avatar':obteneravatar(request)})
-
-@login_required
-def blog_edit(request,id):
-    blog=Blog.objects.get(id=id)
-    if request.method=='POST':
-        form=BlogForm(request.POST, request.FILES)
-        if form.is_valid():
-            info             =form.cleaned_data
-            blog.titulo      =info["titulo"]
-            blog.subtitulo   =info["subtitulo"]
-            blog.cuerpo      =info["cuerpo"]
-            blog.autor       =info['autor']
-            blog.fecha       =info["fecha"]
-            blog.imagen      =info["imagen"]
-            blog.save()
-            Blogs=Blog.objects.all()
-            return render(request, 'chat/blog_edit.html',{'blog':blog,"imagen": blog.imagen.url,'Blogs':Blogs,'mensaje':"Blog Editado Exitosamente"})
-        else:
-            Blogs=Blog.objects.all()
-            return render(request, 'chat/blog_edit.html',{'blog':blog,"imagen": blog.imagen.url,'Blogs':Blogs,'mensaje':"Faltan Campos por rellenar o Formulario Invalido"})
-    else:
-        form=BlogForm(initial={'titulo':blog.titulo,'subtitulo':blog.subtitulo,'cuerpo':blog.cuerpo,'autor':blog.autor,'fecha':blog.fecha,'imagen':blog.imagen.url})
-        return render(request, 'chat/blog_edit.html',{'formulario':form, 'blog':blog})
 
 
 
