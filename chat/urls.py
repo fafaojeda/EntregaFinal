@@ -4,27 +4,29 @@ from chat.views import *
 from ChatApp.settings import *
 
 urlpatterns = [
+        #nombre                 view                    url
     path('',                    inicio,             name='inicio'),
     path('nosotros/',           nosotros,           name='nosotros'),
-    path("resultadosblog/",     resultadosblog,     name="resultadosblog"),
-    path('form_blog/',          form_blog,          name= 'form_blog'),
+    path("resultadosblog/",     resultadosblog,     name='resultadosblog'),
+    path('form-blog/',          form_blog,          name='form_blog'),
     path('chat',                chat_view,          name='chats'),
     path('padre/',              padre_view,         name='padre'),
 
 #Apartado de Blogs
 
-    path('blog_del/<id>/',             blog_del,         name='blog_del'),
-    path('blog_edit/<id>/',            blog_edit,        name='blog_edit'),
+    path('blog-del/<id>/',             blog_del,         name='blog_del'),
+    path('blog-edit/<id>/',            blog_edit,        name='blog_edit'),
+    path('blog-view/<id>/',            blog_view,        name='blog_view'),
 
 #Apartado del Usuario
     path('user/',                   user,               name='user'),
     path('index',                   index,              name='index'),
     path('register',                register_view,      name='register'),
-    path('user_MenuBlogs/',         user_MenuBlogs,     name='user_MenuBlogs'),
-    path("user_Edit/",              user_Edit,          name="user_Edit"),
-    path('user_EditPass/',          user_EditPass,      name="user_EditPass"),
-    path('user_AddAvatar/',         user_AddAvatar,     name='user_AddAvatar'),
-    path('user_MisBlogs/',          user_MisBlogs,      name='user_MisBlogs'),
+    path('MenuBlogs/',         user_MenuBlogs,     name='user_MenuBlogs'),
+    path("Edit/",              user_Edit,          name="user_Edit"),
+    path('EditPass/',          user_EditPass,      name='user_EditPass'),
+    path('AddAvatar/',         user_AddAvatar,     name='user_AddAvatar'),
+    path('MisBlogs/',          user_MisBlogs,      name='user_MisBlogs'),
 
 #Apartado del ChatApp
     path('chat/<int:sender>/<int:receiver>',          message_view, name='chat'),

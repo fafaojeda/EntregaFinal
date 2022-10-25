@@ -16,10 +16,10 @@ class Message(models.Model):
         ordering = ('timestamp',)
 
 class Blog(models.Model):
-    titulo      = models.CharField(max_length=80)
-    subtitulo   = models.CharField(max_length=80)
-    cuerpo      = models.TextField(max_length=5000)
-    autor       = models.CharField(max_length=10)
+    titulo      = models.CharField(max_length=120)
+    subtitulo   = models.CharField(max_length=200)
+    cuerpo      = models.TextField(max_length=9000)
+    autor       = models.CharField(max_length=50)
     fecha       = models.DateField()
     imagen      = models.ImageField(upload_to='media', null=True, blank=True)
     usuario     = models.ForeignKey(User, on_delete=models.CASCADE)

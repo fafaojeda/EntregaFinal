@@ -6,10 +6,15 @@
 {% endblock %}
 
 {% block contenido_que_cambia %}
-<h1>Blogs </h1>
+<div>
+    <div>
+        <a class="btn btn-primary" style="color: lightblue;" href="{% url 'form_blog' %}">Crear Blog</a>
+        <a class="btn btn-primary" style="color: lightblue;" href="{% url 'user_MisBlogs' %}">Mis Blogs</a>
+        <a class="btn btn-primary" style="color: lightblue;" href="{% url 'resultadosblog' %}">Todos los Blogs</a>
+    </div>
+</div>
+<h1> Blogs </h1>
 {% if Blog %}
-
-
 <table>
     <tr>
         <th> <h2>Imagen</h2> </th>
@@ -21,20 +26,20 @@
     </tr>
 
     {% for bl in Blog %}
-    <tr>
-        <td><img src="{{ bl.imagen.url }}" height="180" alt=""></td>
-        <td><h1><a href="">"{{ bl.titulo }}"</a></h1></td>
-        <td><h3>{{ bl.subtitulo }}</h3></td>
-        <td><h3>{{ bl.autor }}</h3></td>
-        <td><h4>{{ bl.fecha }}</h4></td>
+        <tr>
+            <td><img src="{{ bl.imagen.url }}" height="180" alt=""></td>
+            <td><h1><a href="{% url 'blog_view' bl.id %}">"{{ bl.titulo }}"</a></h1></td>
+            <td><h3>{{ bl.subtitulo }}</h3></td>
+            <td><h3>{{ bl.autor }}</h3></td>
+            <td><h4>{{ bl.fecha }}</h4></td>
 
-            <td><a class="btn btn-info" href=" {% url 'blog_edit' bl.id %} ">Modificar</a></td>
-            <td><a class="btn btn-danger" href=" {% url 'blog_del' bl.id %} ">Eliminar</a></td>
-    </tr>
+                <td><a class="btn btn-info" href=" {% url 'blog_edit' bl.id %} ">Modificar</a></td>
+                <td><a class="btn btn-danger" href=" {% url 'blog_del' bl.id %} ">Eliminar</a></td>
+        </tr>
     {% endfor %}
-
 </table>
 {% else %}
+
 <p>No se han encontrado Blogs</p>
 
 {% endif %}

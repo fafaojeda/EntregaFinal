@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block contenido_que_cambia %}
+<div>
+    <a class="btn btn-primary" style="color: lightblue;" href="{% url 'form_blog' %}">Crear Blog</a>
+    <a class="btn btn-primary" style="color: lightblue;" href="{% url 'user_MisBlogs' %}">Mis Blogs</a>
+    <a class="btn btn-primary" style="color: lightblue;" href="{% url 'resultadosblog' %}">Todos los Blogs</a>
+</div>
 <h1>¿Escribi tu blog aqui!</h1>
 {{ mensaje }}
 <form action="{% url 'form_blog' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}

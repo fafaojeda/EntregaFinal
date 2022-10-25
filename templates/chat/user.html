@@ -7,17 +7,22 @@
 
 {% block contenido_que_cambia %}
 <div>
-    <a class="btn btn-info" style="color: lightblue;" href="{% url 'user_AddAvatar' %}">Agregar/Cambiar Avatar</a>
-    <a class="btn btn-info" style="color: lightblue;" href="{% url 'user_Edit' %}">Editar Usuario</a>
-    <a class="btn btn-info" style="color: lightblue;" href="{% url 'user_EditPass' %}">Cambiar Contraseña</a>
+    <a class="btn btn-primary" style="color: lightblue;" href="{% url 'user_AddAvatar' %}">Agregar/Cambiar Avatar</a>
+    <a class="btn btn-primary" style="color: lightblue;" href="{% url 'user_Edit' %}">Editar Usuario</a>
+    <a class="btn btn-primary" style="color: lightblue;" href="{% url 'user_EditPass' %}">Cambiar Contraseña</a>
 </div>
 <div>
-    <ul>
-        <h3>Username:    {{ user.username }}</h3>
-        <h3>Nombre:      {{ user.first_name }}</h3>
-        <h3>Apellido:    {{ user.last_name }}</h3>
-        <h3>Email:       {{ user.email }}</h3>
-    </ul>
+    <table>
+        <tr>
+            <td><img src="{{ avatar }}" height="400" alt=""></td>
+        </tr>
+        <tr style="text-align: right ;">
+            <h3>Username:    {{ user.username }}</h3>
+            <h3>Nombre:      {{ user.first_name }}</h3>
+            <h3>Apellido:    {{ user.last_name }}</h3>
+            <h3>Email:       {{ user.email }}</h3>
+        </tr>
+    </table>
 </div>
 
 

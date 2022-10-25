@@ -30,12 +30,12 @@
                         <a class="btn btn-primary" style="color: lightblue;" href="{% url 'user_MenuBlogs' %}">Blogs</a>
                         <a class="btn btn-primary" style="color: lightblue;" href="{% url 'chats' %}">Chat</a></li>
                         <a class="btn btn-primary" style="color: lightblue;" href="{% url 'nosotros' %}">About Us</a></li>
-                        <a class="btn btn-primary" style="color: lightblue;" href="{% url 'user' %}">User</a>
                         <a class="btn btn-primary" style="color: lightblue;" href="{% url 'logout' %}">Logout</a>
                         <img src="{{ avatar }}" alt="" height="60px">
-                        <h4 style="text-align: left;"> {{ user.first_name }} {{ user.last_name }}</h4>
+                        <a class="btn btn-primary" style="text-align: left; color: lightblue;" href="{% url 'user' %}">{{ user.username }}</a>
+                            <img src="" alt="">
                         {% else %}
-
+                        
                         <a class="btn btn-primary" style="color: lightblue;" href="{% url 'index' %}">Login</a>
                         <a class="btn btn-primary" style="color: lightblue;" href="{% url 'register' %}">Registrate</a>
                         <a class="btn btn-primary" style="color: lightblue;" href="{% url 'inicio' %}">Inicio</a>

@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block contenido_que_cambia %}
+<div>
+    <a class="btn btn-primary" style="color: lightblue;" href="{% url 'user_AddAvatar' %}">Agregar/Cambiar Avatar</a>
+    <a class="btn btn-primary" style="color: lightblue;" href="{% url 'user_Edit' %}">Editar Usuario</a>
+    <a class="btn btn-primary" style="color: lightblue;" href="{% url 'user_EditPass' %}">Cambiar Contraseña</a>
+</div>
 <h1>Agregar Avatar</h1>
 <form action="{% url 'user_AddAvatar' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
 

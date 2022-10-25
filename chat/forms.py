@@ -40,7 +40,7 @@ class BlogForm(forms.Form):
     subtitulo       =forms.CharField(max_length=50)
     cuerpo          =forms.CharField(max_length=1000, widget      =forms.Textarea)
     autor           =forms.CharField(max_length=30)
-    fecha           =forms.DateField(label='Fecha aaaa/mm/dd')
+    fecha           =forms.DateField(label='Fecha aaaa-mm-dd')
     imagen          =forms.ImageField(label='imagen')
     class Meta:
         model = Blog

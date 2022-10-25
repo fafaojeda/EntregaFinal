@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-<h1 class="mb-5">Catalogo de Blogs</h1>
+<h1 class="mb-5">Blog </h1>
 {% endblock %}
 
 {% block contenido_que_cambia %}
@@ -13,31 +13,23 @@
     <a class="btn btn-primary" style="color: lightblue;" href="{% url 'resultadosblog' %}">Todos los Blogs</a>
 </div>
 {% endif %}
-
-<h1>Blogs </h1>
 {% if Blog %}
 
-<table>
-    <tr>
-        <th><h2>Imagen</h2></th>
-        <th><h2>Titulo</h2></th> 
-        <th><h2>Subtitulo</h2></th> 
-        <th><h2>Autor</h2></th> 
-        <th><h2>Fecha</h2></th> 
-    </tr>
-
     {% for bl in Blog %}
-    <tr>
-        <td><img src="{{ bl.imagen.url }}" height="180" alt=""></td>
-        <td><h1><a href="{% url 'blog_view' bl.id %}">"{{ bl.titulo }}"</a></h1></td>
-        <td><h3>{{ bl.subtitulo }}</h3></td>
-        <td><h3>{{ bl.autor }}</h3></td>
-        <td><h4>{{ bl.fecha }}</h4></td>
-    </tr>
+        <div>
+            <img    src="{{ bl.imagen.url }}" height="300" alt="imagen del blog"></img>
+            <h1>    {{ bl.titulo }}</h1>
+        </div>
+        <div>
+            <h2>    {{ bl.subtitulo }}</h2>
+            <h2>    {{ bl.autor }}</h2>
+            <h3>    {{ bl.fecha }}</h3>
+        </div>
+        <div>
+            <h5>    {{ bl.cuerpo }}</h5> 
+        </div>
+    {% endfor %}
 
-{% endfor %}
-
-</table>
 {% else %}
 <p>No se han encontrado Blogs</p>
 

@@ -5,6 +5,7 @@
     </h3>
     <form id="register-form" class="form-group" method="POST">
         {% csrf_token %}
+        {{ mensaje }}
             <div class="row">
                 <div class="input-field col s12">
                     {{ form.username }}
